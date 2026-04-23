@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CVOsc &mdash; Multichannel Oscilloscope for CV &amp; Audio</title>
+  <meta name="description" content="A multichannel oscilloscope for Eurorack CV and audio work with DC offset enabled soundcards. Stream up to 16 CV or audio channels, record, play back through DC-coupled outputs, and detect tuning in real time. For iPadOS, iOS, and Android." />
+  <link rel="icon" type="image/svg+xml" href="https://alephvoid.com/assets/logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Shared logo symbol -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="cvosc-logo" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="8" fill="var(--color-accent)" />
+      <path d="M3 16 Q7 16 9 9 T15 23 T21 9 T27 16 L29 16"
+            fill="none" stroke="#fff" stroke-width="2.4"
+            stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+  </svg>
+
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <svg class="nav-logo"><use href="#cvosc-logo"/></svg>
+        <span>CVOsc</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">Modes</a>
+        <a href="#hardware">Hardware</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <a href="#install" class="btn btn-sm btn-primary">Install</a>
+      </div>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">Modes</a>
+      <a href="#hardware">Hardware</a>
+      <a href="#faq">FAQ</a>
+      <a href="#install" class="btn btn-primary">Install</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">// For Eurorack &amp; DC-Coupled Audio Interfaces</div>
+        <h1>A Multichannel Scope<br /><span class="text-gradient">for CV &amp; Audio</span></h1>
+        <p class="hero-subtitle">
+          CVOsc turns your iPad, iPhone, or Android device into a real-time oscilloscope for
+          up to 16 channels of Eurorack Control Voltage or audio-rate signal. Capture from any
+          DC offset enabled soundcard, overlay channels, record, and play back through
+          DC-coupled outputs &mdash; all with per-channel scaling and live tuning detection.
+        </p>
+        <div class="hero-actions">
+          <a href="#install" class="btn btn-primary btn-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Get CVOsc
+          </a>
+          <a href="#features" class="btn btn-outline btn-lg">Learn More</a>
+        </div>
+        <div class="hero-platforms">
+          <span class="hero-platforms-label">Available for</span>
+          <div class="platform-icons">
+            <div class="platform-icon" title="iPadOS &amp; iOS">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+              <span>iPad &amp; iPhone</span>
+            </div>
+            <div class="platform-icon" title="Android">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.43 11.43 0 0 0-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.27.18-.37.54-.22.83L6.4 9.48A10.9 10.9 0 0 0 2 18.33h20a10.9 10.9 0 0 0-4.4-8.85zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
+              <span>Android</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scope Mockup -->
+      <div class="hero-visual">
+        <div class="scope-mockup">
+          <div class="scope-header">
+            <div class="scope-dots"><span></span><span></span><span></span></div>
+            <span class="scope-title">CVOsc &middot; 4/16 &middot; Selected</span>
+          </div>
+          <div class="scope-body">
+            <div class="scope-grid" aria-hidden="true">
+              <!-- Pane 1: CV sawtooth -->
+              <div class="scope-pane selected">
+                <span class="scope-pane-label">
+                  <span class="scope-pane-dot" style="background:#8b5cf6"></span>CH 1
+                </span>
+                <span class="scope-pane-badge">CV</span>
+                <svg class="graticule" viewBox="0 0 100 60" preserveAspectRatio="none">
+                  <path d="M0 15 H100 M0 30 H100 M0 45 H100 M25 0 V60 M50 0 V60 M75 0 V60" stroke="#6d28d9" stroke-width="0.3" fill="none"/>
+                </svg>
+                <svg class="waveform" viewBox="0 0 100 60" preserveAspectRatio="none">
+                  <polyline points="0,50 20,10 20,50 40,10 40,50 60,10 60,50 80,10 80,50 100,10"
+                            fill="none" stroke="#8b5cf6" stroke-width="1.2"/>
+                </svg>
+                <span class="scope-tuning">A3 +2&cent;</span>
+              </div>
+              <!-- Pane 2: Audio sine -->
+              <div class="scope-pane selected">
+                <span class="scope-pane-label">
+                  <span class="scope-pane-dot" style="background:#4ade80"></span>CH 2
+                </span>
+                <span class="scope-pane-badge">Audio</span>
+                <svg class="graticule" viewBox="0 0 100 60" preserveAspectRatio="none">
+                  <path d="M0 15 H100 M0 30 H100 M0 45 H100 M25 0 V60 M50 0 V60 M75 0 V60" stroke="#6d28d9" stroke-width="0.3" fill="none"/>
+                </svg>
+                <svg class="waveform" viewBox="0 0 100 60" preserveAspectRatio="none">
+                  <path d="M0 30 Q 6.25 5, 12.5 30 T 25 30 T 37.5 30 T 50 30 T 62.5 30 T 75 30 T 87.5 30 T 100 30"
+                        fill="none" stroke="#4ade80" stroke-width="1.2"/>
+                </svg>
+                <span class="scope-tuning">D4 -4&cent;</span>
+              </div>
+              <!-- Pane 3: CV square LFO -->
+              <div class="scope-pane selected">
+                <span class="scope-pane-label">
+                  <span class="scope-pane-dot" style="background:#fbbf24"></span>CH 3
+                </span>
+                <span class="scope-pane-badge">CV</span>
+                <svg class="graticule" viewBox="0 0 100 60" preserveAspectRatio="none">
+                  <path d="M0 15 H100 M0 30 H100 M0 45 H100 M25 0 V60 M50 0 V60 M75 0 V60" stroke="#6d28d9" stroke-width="0.3" fill="none"/>
+                </svg>
+                <svg class="waveform" viewBox="0 0 100 60" preserveAspectRatio="none">
+                  <polyline points="0,48 15,48 15,12 35,12 35,48 55,48 55,12 75,12 75,48 100,48"
+                            fill="none" stroke="#fbbf24" stroke-width="1.2"/>
+                </svg>
+              </div>
+              <!-- Pane 4: Audio harmonics -->
+              <div class="scope-pane selected">
+                <span class="scope-pane-label">
+                  <span class="scope-pane-dot" style="background:#f87171"></span>CH 4
+                </span>
+                <span class="scope-pane-badge">Audio</span>
+                <svg class="graticule" viewBox="0 0 100 60" preserveAspectRatio="none">
+                  <path d="M0 15 H100 M0 30 H100 M0 45 H100 M25 0 V60 M50 0 V60 M75 0 V60" stroke="#6d28d9" stroke-width="0.3" fill="none"/>
+                </svg>
+                <svg class="waveform" viewBox="0 0 100 60" preserveAspectRatio="none">
+                  <path d="M0 30 Q 3 8, 6 30 T 12 30 Q 15 52, 18 30 T 24 30 Q 27 8, 30 30 T 36 30 Q 39 52, 42 30 T 48 30 Q 51 8, 54 30 T 60 30 Q 63 52, 66 30 T 72 30 Q 75 8, 78 30 T 84 30 Q 87 52, 90 30 T 96 30"
+                        fill="none" stroke="#f87171" stroke-width="1.2"/>
+                </svg>
+                <span class="scope-tuning">F#5 +7&cent;</span>
+              </div>
+            </div>
+            <div class="scope-controls">
+              <div class="scope-pill">4 / 16</div>
+              <div class="scope-btn">All</div>
+              <div class="scope-btn primary">Selected</div>
+              <div class="scope-btn">Overlay</div>
+              <div class="scope-btn danger-soft">&#x25CF; Rec</div>
+              <div class="scope-btn">Tune</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// Features</span>
+        <h2>Built for <span class="text-gradient">Eurorack &amp; Audio Work</span></h2>
+        <p>Everything you need to inspect modular signals the way a bench scope would, plus the recording and tuning tools audio interfaces usually don't give you.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 11h3l2-4 3 8 2-4 3 4 2-2h3"/></svg>
+          </div>
+          <h3>Up to 16 Channels</h3>
+          <p>Stream every input on a DC offset enabled soundcard simultaneously. iPad and Android tablets show a 4&times;4 grid; iPhone and Android phones show a 2&times;2 grid and page through the rest.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h4l2-8 4 16 2-8 4 4 2-4h2"/></svg>
+          </div>
+          <h3>CV &amp; Audio Modes</h3>
+          <p>Flip each channel between CV and audio-rate handling. CV uses volts with a 1&nbsp;s time base; audio uses normalized amplitude with a rising zero-crossing trigger.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>Record &amp; Export</h3>
+          <p>Capture any selected channels to per-channel CAF / WAV files with a JSON sidecar alongside the audio for signal type, scaling, sample rate, and timestamp metadata.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <h3>DC-Safe Playback</h3>
+          <p>Assign each recording to an output channel and play it back through your interface. CVOsc checks the device against a catalog of known DC-coupled hardware before enabling Play.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </div>
+          <h3>Live Tuning</h3>
+          <p>Autocorrelation for audio, V/oct mapping for CV. Each selected pane shows the detected note and cents offset, so you can tune a VCO or quantizer against the scope.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          </div>
+          <h3>Per-Channel Scaling</h3>
+          <p>Set the vertical range, DC offset, and time base on any channel. Units render in your locale (<code>&plusmn;10.00 V</code> or <code>&plusmn;10,00 V</code>), and the trigger can be toggled per channel.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works / Modes -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// Display Modes</span>
+        <h2>Three Ways to <span class="text-gradient">Look at Signals</span></h2>
+        <p>Pick the view that fits what you're chasing &mdash; an overview across every input, a focused look at just the ones you care about, or a stacked overlay for comparing shape.</p>
+      </div>
+      <div class="modes-grid">
+        <div class="mode-card">
+          <div class="mode-number">1</div>
+          <h3>All Channels</h3>
+          <p class="mode-desc">A uniform grid of every input the interface exposes. Pages through 16-at-a-time on iPad or 4-at-a-time on iPhone. Tuning badges render per pane when enabled.</p>
+          <ul class="mode-details">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Full visibility across the device
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Pager for more inputs than fit on one page
+            </li>
+          </ul>
+        </div>
+        <div class="mode-card">
+          <div class="mode-number">2</div>
+          <h3>Selected</h3>
+          <p class="mode-desc">Only the channels you've picked, in the same uniform grid layout. Great for isolating a patch section or a subset of CV outs without losing per-pane scaling.</p>
+          <ul class="mode-details">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Bigger waveforms, fewer distractions
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Tuning badges on every visible pane
+            </li>
+          </ul>
+        </div>
+        <div class="mode-card">
+          <div class="mode-number">3</div>
+          <h3>Overlay</h3>
+          <p class="mode-desc">Selected channels drawn on top of each other in a single pane. Perfect for comparing phase, lining up envelopes, or checking that two VCOs track.</p>
+          <ul class="mode-details">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              One big canvas, stacked traces
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Each channel keeps its own color &amp; scaling
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="workflow-steps">
+        <h3 class="workflow-title">Typical Workflow</h3>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Connect</h4>
+              <p>Plug a DC offset enabled soundcard into your device over USB (class-compliant USB audio on both iOS and Android).</p>
+            </div>
+          </div>
+          <div class="step-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Scale</h4>
+              <p>Tap a pane to set signal type, range, offset, and time base for that channel.</p>
+            </div>
+          </div>
+          <div class="step-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Record</h4>
+              <p>Select channels, tap Record, and CVOsc writes per-channel audio plus a JSON sidecar to local storage.</p>
+            </div>
+          </div>
+          <div class="step-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Play Back</h4>
+              <p>Assign each recording to an output and replay through a DC-coupled channel on your interface.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hardware / DC-coupled catalog -->
+  <section id="hardware" class="hardware">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// Hardware</span>
+        <h2>Works With Any <span class="text-gradient">DC-Coupled Soundcard</span></h2>
+        <p>CVOsc works with any class-compliant USB audio interface. Audio-rate capture works on every device; to see and play back CV you need a DC offset enabled soundcard. CVOsc ships with a built-in catalog of units known to preserve DC.</p>
+      </div>
+      <div class="hardware-grid">
+        <div class="hardware-item">
+          <div class="name">Audio-rate capture</div>
+          <div class="label">Any class-compliant USB interface</div>
+        </div>
+        <div class="hardware-item">
+          <div class="name">CV capture &amp; playback</div>
+          <div class="label">DC offset enabled soundcard required</div>
+        </div>
+        <div class="hardware-item">
+          <div class="name">Built-in catalog</div>
+          <div class="label">App validates the output before Play</div>
+        </div>
+        <div class="hardware-item">
+          <div class="name">Missing from the catalog?</div>
+          <div class="label">Email us &mdash; we add verified units</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Install -->
+  <section id="install" class="install">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// Install</span>
+        <h2>Get <span class="text-gradient">CVOsc</span></h2>
+        <p>Grab it on your platform of choice. The iOS build covers iPad and iPhone from a single App Store listing; Android is a separate build on Google Play.</p>
+      </div>
+      <div class="install-grid">
+        <a href="https://apps.apple.com/app/cvosc" target="_blank" rel="noopener" class="install-card">
+          <svg class="install-platform-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+          <h3>App Store</h3>
+          <p>iPad &middot; iPhone</p>
+          <span class="install-btn">Download on the App Store</span>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.alephvoid.cvosc.android" target="_blank" rel="noopener" class="install-card">
+          <svg class="install-platform-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.43 11.43 0 0 0-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.27.18-.37.54-.22.83L6.4 9.48A10.9 10.9 0 0 0 2 18.33h20a10.9 10.9 0 0 0-4.4-8.85zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
+          <h3>Google Play</h3>
+          <p>Android phones &amp; tablets</p>
+          <span class="install-btn">Get it on Google Play</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// FAQ</span>
+        <h2>Frequently Asked <span class="text-gradient">Questions</span></h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What hardware do I actually need?</summary>
+          <p>To see CV signals you need a DC offset enabled soundcard &mdash; an audio interface whose inputs and outputs preserve DC instead of stripping it. For audio-only work, any class-compliant USB audio interface will do. On iPad you can either use a USB-C iPad directly or a Lightning iPad with an Apple Camera Adapter. On Android, any device with USB Host support works.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I try it without an interface?</summary>
+          <p>Debug builds of the Android app fall back to a synthetic 8-channel sine generator when no USB interface is attached, so you can drive the UI without hardware. The App Store release always requires a real USB audio interface to show real signals.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Where are my recordings stored?</summary>
+          <p>Recordings live in the app's local storage on your device &mdash; in the sandboxed Documents directory on iOS, and in scoped app storage on Android. They stay on-device until you delete them or uninstall the app.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does tuning work on modular CV?</summary>
+          <p>Yes. For audio-rate signals CVOsc runs autocorrelation on the last 2048 samples. For CV channels it averages the voltage and maps it under the <strong>1&nbsp;V/oct</strong> convention (0&nbsp;V = C0). The badge shows the detected note and cents offset, and the cents label turns violet when the offset exceeds 10 cents.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which platforms are supported?</summary>
+          <p>iPadOS and iOS from the Apple build (iPadOS / iOS 26.4+), and Android 7.0 (SDK 24) and newer from the Google Play build. Same core engine, same feature set; iPad is the primary target.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What about in-app purchases?</summary>
+          <p>On Android, the Tuner and Record/Playback features are unlocked via one-time in-app purchases through Google Play Billing. The Apple build ships with all features included.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is my output safe for CV playback?</summary>
+          <p>Most audio interfaces strip DC from their outputs, which destroys CV. CVOsc ships a catalog of DC offset enabled soundcards known to preserve DC through their outputs. If your current output isn't in the catalog, the Play button is disabled and the app tells you why.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does CVOsc collect any data?</summary>
+          <p>No. CVOsc does not collect, transmit, sell, or share any personal data. Recordings stay on your device. See the <a href="privacy.html">Privacy Policy</a> for details.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <svg class="footer-logo"><use href="#cvosc-logo"/></svg>
+          <span>CVOsc</span>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="#features">Features</a>
+          <a href="#how-it-works">Modes</a>
+          <a href="#faq">FAQ</a>
+          <a href="support.html">Support</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="https://alephvoid.com" target="_blank" rel="noopener">Aleph Void</a>
+        </div>
+        <p class="footer-copy">Created by <a href="https://alephvoid.com" target="_blank" rel="noopener">Aleph Void LLC</a>. &copy; 2026 CVOsc.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
