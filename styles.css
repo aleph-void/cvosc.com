@@ -759,6 +759,46 @@ code {
   font-weight: 600;
 }
 
+/* ===== Data Safety disclosure table ===== */
+.disclosure-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 24px;
+  font-size: .85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.disclosure-table thead th {
+  background: var(--color-bg-alt);
+  color: var(--color-text);
+  font-weight: 600;
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--color-border-strong);
+  font-size: .82rem;
+  letter-spacing: .01em;
+}
+.disclosure-table tbody td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  vertical-align: top;
+  line-height: 1.55;
+}
+.disclosure-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.disclosure-table tbody td:first-child {
+  color: var(--color-text);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.disclosure-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* ===== Install ===== */
 .install {
   padding: 100px 0;

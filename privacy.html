@@ -58,9 +58,12 @@
         <h1>Your Data Stays<br /><span class="text-gradient">On Your Device</span></h1>
         <p class="hero-subtitle">
           CVOsc, published by Aleph Void LLC ("Aleph Void," "we," "us," or "our"), does not
-          collect, transmit, sell, or share any personal data. Everything the app does
-          happens locally on your device. This page explains exactly what each permission
-          is used for and why it is required.
+          collect, transmit, sell, or share any personal data tied to your identity. The
+          audio you capture, your recordings, and your settings stay on your device. The
+          Android build sends a limited stream of anonymous diagnostic and usage data
+          through Firebase Analytics and Crashlytics so we can measure stability and
+          aggregate usage &mdash; details and the Google Play Data Safety disclosure are
+          below. The iOS / iPadOS build contains no analytics or crash-reporting SDKs.
         </p>
       </div>
     </div>
@@ -94,11 +97,11 @@
       <div class="modes-grid">
         <div class="mode-card">
           <h3>What We Collect</h3>
-          <p class="mode-desc"><strong>Nothing.</strong> CVOsc does not collect personally identifiable information, location, contacts, browsing history, authentication credentials, financial data, health information, communications, or any other personal data.</p>
+          <p class="mode-desc"><strong>No personally identifiable information.</strong> CVOsc does not collect your name, email, contacts, precise location, browsing history, authentication credentials, financial data, health information, or communications. The Android build collects anonymous diagnostic and aggregate usage data via Firebase &mdash; see the Google Play Data Safety section below.</p>
         </div>
         <div class="mode-card">
           <h3>What We Transmit</h3>
-          <p class="mode-desc"><strong>Nothing.</strong> The app makes no network requests to any server operated by us or any third party. Audio captured from your interface never leaves your device. There is no telemetry, analytics SDK, crash reporter, or advertising network embedded in the app.</p>
+          <p class="mode-desc"><strong>Audio never leaves your device.</strong> Samples captured from your interface are processed and stored locally only. The Android build transmits anonymous crash reports and aggregate usage events to Google's Firebase servers (Analytics and Crashlytics). The iOS / iPadOS build performs no network transmission for app functionality.</p>
         </div>
         <div class="mode-card">
           <h3>What We Store</h3>
@@ -106,7 +109,7 @@
         </div>
         <div class="mode-card">
           <h3>Data Sale &amp; Sharing</h3>
-          <p class="mode-desc">We do <strong>not</strong> sell or share user data with third parties. We do not use user data for advertising, credit assessment, or any purpose unrelated to the app's single purpose.</p>
+          <p class="mode-desc">We do <strong>not</strong> sell user data and we do <strong>not</strong> share user data with third parties for advertising, credit assessment, or any purpose unrelated to the app. Firebase Analytics and Crashlytics data on the Android build is processed by Google acting as our service provider under the <a href="https://firebase.google.com/terms/data-processing-terms" target="_blank" rel="noopener">Firebase Data Processing and Security Terms</a>; we do not use it for advertising and we have not enabled Google Signals or ads personalization.</p>
         </div>
       </div>
     </div>
@@ -152,7 +155,7 @@
         <div class="doc-card">
           <h3>Network Access</h3>
           <div class="doc-content">
-            <p><strong>CVOsc does not perform network requests for app functionality.</strong> On Android, Google Play Billing talks to Google's servers through the Billing library; our code does not open sockets or contact any remote endpoint. There is no analytics, crash reporting, advertising, or remote configuration service.</p>
+            <p><strong>CVOsc's audio engine performs no network requests.</strong> The Android build embeds three Google client libraries that talk to Google's servers on its behalf: Google Play Billing (entitlement checks), Firebase Analytics (aggregate usage), and Firebase Crashlytics (crash reports). All three use HTTPS. No remote configuration, A/B testing, advertising SDK, or third-party analytics is embedded. The iOS / iPadOS build performs no network requests at all.</p>
           </div>
         </div>
 
@@ -173,6 +176,89 @@
     </div>
   </section>
 
+  <!-- Google Play Data Safety -->
+  <section class="docs">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// Google Play</span>
+        <h2>Data Safety <span class="text-gradient">Disclosure</span></h2>
+        <p>The data the Android build of CVOsc collects, why, and how it is handled &mdash; mirroring the Data Safety form in the Google Play Console. This section applies to the Android build only; the iOS / iPadOS build collects nothing.</p>
+      </div>
+      <div class="doc-card" style="max-width: 960px; margin: 0 auto;">
+        <div class="doc-content">
+          <h4>Data Collected</h4>
+          <p>The Android build embeds <strong>Firebase Analytics</strong> and <strong>Firebase Crashlytics</strong> (Google LLC). The data types below are collected automatically by these SDKs. CVOsc does not log custom events, set user IDs, or attach user properties beyond the SDK defaults.</p>
+          <div class="disclosure-wrap">
+            <table class="disclosure-table">
+              <thead>
+                <tr>
+                  <th>Data type</th>
+                  <th>Category</th>
+                  <th>Purpose</th>
+                  <th>Required?</th>
+                  <th>Source</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Crash logs</td>
+                  <td>App info and performance</td>
+                  <td>Analytics, App functionality</td>
+                  <td>Required</td>
+                  <td>Crashlytics</td>
+                </tr>
+                <tr>
+                  <td>Diagnostics</td>
+                  <td>App info and performance</td>
+                  <td>Analytics, App functionality</td>
+                  <td>Required</td>
+                  <td>Crashlytics, Analytics</td>
+                </tr>
+                <tr>
+                  <td>Other app performance data</td>
+                  <td>App info and performance</td>
+                  <td>Analytics</td>
+                  <td>Required</td>
+                  <td>Analytics</td>
+                </tr>
+                <tr>
+                  <td>App interactions</td>
+                  <td>App activity</td>
+                  <td>Analytics</td>
+                  <td>Required</td>
+                  <td>Analytics (auto-collected events: <code>first_open</code>, <code>session_start</code>, <code>screen_view</code>, <code>app_update</code>)</td>
+                </tr>
+                <tr>
+                  <td>Device or other IDs</td>
+                  <td>Device or other IDs</td>
+                  <td>Analytics</td>
+                  <td>Required</td>
+                  <td>Firebase Installation ID (Crashlytics), App Instance ID (Analytics)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Data Handling</h4>
+          <ul>
+            <li><strong>Encryption in transit:</strong> Yes. All data sent to Firebase is transmitted over HTTPS.</li>
+            <li><strong>Data sharing with third parties:</strong> No. Firebase is operated by Google LLC, which acts as our service provider / data processor under the <a href="https://firebase.google.com/terms/data-processing-terms" target="_blank" rel="noopener">Firebase Data Processing and Security Terms</a>. We do not transfer this data to any other party. Google Signals, ads personalization, and the Google Analytics for Firebase advertising features are <strong>not</strong> enabled.</li>
+            <li><strong>Identifiers:</strong> The App Instance ID and Firebase Installation ID are pseudonymous identifiers generated on the device. They are not your Google account, your advertising ID, your phone number, or any other identifier you would recognise as yours. CVOsc does not request or read the Android Advertising ID.</li>
+            <li><strong>IP address:</strong> Firebase uses your IP address only to derive an approximate (country-level) region for analytics; the IP itself is not retained in long-term Analytics storage. Crashlytics may retain the IP for a short window for spam protection.</li>
+            <li><strong>User account:</strong> CVOsc has no sign-in. We do not collect a name, email address, password, or any other account credential.</li>
+            <li><strong>Audio data:</strong> Audio captured from your USB interface is processed locally only. It is <strong>not</strong> transmitted to Firebase or anywhere else.</li>
+            <li><strong>Data retention:</strong> Firebase Crashlytics retains crash data for up to 90 days. Firebase Analytics is configured with a user-data retention window of 14 months, after which records expire automatically. Aggregate reports may be retained longer but are not tied to an individual installation.</li>
+            <li><strong>Data deletion request:</strong> Because we do not collect direct identifiers, we cannot look you up by name or email. You can erase your installation's pseudonymous data by uninstalling and reinstalling the app (this generates a new App Instance ID and Firebase Installation ID and orphans the previous identifiers, which then expire under the retention windows above). You can also email <a href="mailto:privacy@alephvoid.com">privacy@alephvoid.com</a> with your current App Instance ID (visible to us only via the Firebase console at the time of your request) and we will delete the matching records.</li>
+            <li><strong>Opting out of analytics:</strong> You can disable Analytics collection on your device by uninstalling the app, or contact us at <a href="mailto:privacy@alephvoid.com">privacy@alephvoid.com</a> for guidance on a future in-app opt-out.</li>
+          </ul>
+
+          <h4>Data Not Collected</h4>
+          <p>For clarity, the following Data Safety categories are <strong>not</strong> collected by CVOsc: personal info (name, email, phone, address, identifiers tied to a real person), financial info, health and fitness, messages, photos, videos, audio recordings (your CV/audio captures stay on your device), files and docs, calendar, contacts, web browsing history, search history, installed apps, precise location.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Compliance -->
   <section class="install">
     <div class="container">
@@ -183,24 +269,24 @@
       </div>
       <div class="doc-card" style="max-width: 800px; margin: 0 auto;">
         <div class="doc-content">
-          <p>We certify that CVOsc's data usage complies with the <strong>Apple App Store Review Guidelines</strong> (including the App Privacy Details requirements) and the <strong>Google Play Developer Program Policies</strong> (including the User Data policy and the Families policy). Specifically:</p>
+          <p>We certify that CVOsc's data usage complies with the <strong>Apple App Store Review Guidelines</strong> (including the App Privacy Details requirements) and the <strong>Google Play Developer Program Policies</strong> (including the User Data policy, the SDK policy, and the Families policy). Specifically:</p>
           <ul>
             <li>We do <strong>not</strong> sell user data to third parties.</li>
-            <li>We do <strong>not</strong> use or transfer user data for purposes unrelated to the app's single purpose.</li>
+            <li>We do <strong>not</strong> use or transfer user data for purposes unrelated to the app's functionality, app stability, and aggregate usage analytics.</li>
             <li>We do <strong>not</strong> use or transfer user data to determine creditworthiness or for lending purposes.</li>
-            <li>We do <strong>not</strong> collect personal or sensitive user data from the app &mdash; the audio streams captured from your interface never leave your device.</li>
-            <li>All permissions requested are used solely to support the app's audio capture, visualization, recording, and playback functionality as described above.</li>
+            <li>We do <strong>not</strong> collect personally identifiable user data &mdash; the audio streams captured from your interface never leave your device. The pseudonymous diagnostic data the Android build sends to Firebase is described in detail in the Google Play Data Safety section above and is fully reflected in the Data Safety form on our Google Play listing.</li>
+            <li>All permissions requested are used solely to support the app's audio capture, visualization, recording, playback, and (Android only) crash and stability monitoring as described above.</li>
           </ul>
 
           <h4>Data Controller</h4>
-          <p>The data controller responsible for CVOsc is <strong>Aleph Void LLC</strong>. Because the app does not collect, transmit, or process any personal data on our servers, there are no data processing activities for which we act as a controller in practice &mdash; but Aleph Void LLC remains the publisher accountable for this policy.</p>
+          <p>The data controller responsible for CVOsc is <strong>Aleph Void LLC</strong>. We do not operate any servers that store user data. The Android build's Firebase Analytics and Crashlytics data is processed by <strong>Google LLC</strong> on our behalf as a data processor under the <a href="https://firebase.google.com/terms/data-processing-terms" target="_blank" rel="noopener">Firebase Data Processing and Security Terms</a>. Aleph Void LLC remains the publisher accountable for this policy.</p>
 
           <h4>Children's Privacy</h4>
           <p>CVOsc is a tool for musicians, audio engineers, and Eurorack / modular synth users. It is not directed at children under the age of 13 (or under 16 in jurisdictions where that is the applicable age). We do not knowingly collect personal information from children. Because the app does not collect any personal information from any user, no special handling for children's data is required.</p>
 
           <h4>Your Rights (GDPR, CCPA, and Similar Laws)</h4>
           <p>Privacy laws such as the EU General Data Protection Regulation (GDPR), the UK GDPR, and the California Consumer Privacy Act (CCPA/CPRA) grant users rights including access, correction, deletion, portability, and the right to object to processing of their personal data.</p>
-          <p>Because CVOsc does <strong>not</strong> collect, transmit, store on our servers, sell, or share any personal data, we hold no personal data about you to access, correct, export, or delete. All data the app uses (recordings, channel settings, UI preferences) is stored locally on your own device. You can exercise the equivalent of all of these rights yourself at any time by viewing, editing, or deleting that data from within the app, from the system file manager, or by uninstalling the app.</p>
+          <p>Because CVOsc does <strong>not</strong> collect direct identifiers (name, email, account ID, government ID, device-level advertising ID) and does not sell or share user data, the personal data we hold about you is limited to the pseudonymous Firebase identifiers and aggregate event data described in the Google Play Data Safety section above (Android build only). All recordings, channel settings, and UI preferences are stored locally on your own device, and you can view, edit, or delete them from within the app, from the system file manager, or by uninstalling the app. To request access, correction, export, or deletion of the Firebase data tied to your installation, email <a href="mailto:privacy@alephvoid.com">privacy@alephvoid.com</a>; we will respond within 30 days.</p>
           <p>We do not "sell" or "share" personal information as those terms are defined under the CCPA/CPRA.</p>
 
           <h4>Changes to This Policy</h4>
@@ -208,7 +294,7 @@
 
           <h4>Contact</h4>
           <p>Questions, concerns, or reports about this privacy policy can be sent to <a href="mailto:privacy@alephvoid.com">privacy@alephvoid.com</a> or filed as a public issue on our GitHub repository. See also our <a href="support.html">Support page</a>.</p>
-          <p style="opacity: 0.7; font-size: 0.9em;">Effective date: April 23, 2026<br />Last updated: April 23, 2026</p>
+          <p style="opacity: 0.7; font-size: 0.9em;">Effective date: May 2, 2026<br />Last updated: May 2, 2026</p>
         </div>
       </div>
     </div>
