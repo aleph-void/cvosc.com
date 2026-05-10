@@ -1,0 +1,73 @@
+name: Bug report
+description: Report a bug in CVOsc
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report. Please fill in the fields below so we can reproduce the issue.
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      description: Which platform are you running CVOsc on?
+      options:
+        - iOS
+        - Android
+        - Windows
+    validations:
+      required: true
+
+  - type: input
+    id: platform-version
+    attributes:
+      label: Platform version
+      description: The OS version of the device (e.g. iOS 26.4, Android 14, Windows 11 23H2).
+      placeholder: e.g. iOS 26.4
+    validations:
+      required: true
+
+  - type: input
+    id: app-version
+    attributes:
+      label: CVOsc version
+      description: The version of CVOsc you are running. Leave blank if you are not sure.
+      placeholder: e.g. 1.2.0
+    validations:
+      required: false
+
+  - type: input
+    id: hardware
+    attributes:
+      label: Audio interface / hardware
+      description: The USB audio interface you are using, if applicable.
+      placeholder: e.g. Expert Sleepers ES-9
+    validations:
+      required: false
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: What you are seeing happen
+      description: Describe the actual behavior. Include steps to reproduce if possible.
+      placeholder: Describe what is happening, including the steps that lead to it.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you are expecting to happen
+      description: Describe the behavior you expected instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional context
+      description: Logs, screenshots, recordings, or any other context. Drag-and-drop attachments here.
+    validations:
+      required: false
