@@ -5,28 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CVOsc &mdash; Multichannel Oscilloscope for CV &amp; Audio</title>
   <meta name="description" content="A multichannel oscilloscope for Eurorack CV and audio work with DC offset enabled soundcards. Stream up to 16 CV or audio channels, record, play back through DC-coupled outputs, and detect tuning in real time. For iPadOS, iOS, and Android." />
-  <link rel="icon" type="image/svg+xml" href="https://alephvoid.com/assets/logo.svg" />
+  <link rel="icon" type="image/png" href="assets/img/app-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Shared logo symbol -->
-  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
-    <symbol id="cvosc-logo" viewBox="0 0 32 32">
-      <rect width="32" height="32" rx="8" fill="var(--color-accent)" />
-      <path d="M3 16 Q7 16 9 9 T15 23 T21 9 T27 16 L29 16"
-            fill="none" stroke="#fff" stroke-width="2.4"
-            stroke-linecap="round" stroke-linejoin="round" />
-    </symbol>
-  </svg>
-
   <!-- Navigation -->
   <nav id="nav">
     <div class="nav-inner">
       <a href="#" class="nav-brand">
-        <svg class="nav-logo"><use href="#cvosc-logo"/></svg>
+        <img class="nav-logo" src="assets/img/app-icon.png" alt="CVOsc" />
         <span>CVOsc</span>
       </a>
       <div class="nav-links">
@@ -481,7 +471,7 @@
     <div class="container">
       <div class="footer-inner">
         <div class="footer-brand">
-          <svg class="footer-logo"><use href="#cvosc-logo"/></svg>
+          <img class="footer-logo" src="assets/img/app-icon.png" alt="CVOsc" />
           <span>CVOsc</span>
         </div>
         <div class="footer-links">

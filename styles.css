@@ -159,6 +159,8 @@ code {
 .nav-logo {
   width: 36px;
   height: 36px;
+  border-radius: 8px;
+  object-fit: cover;
 }
 .nav-links {
   display: flex;
@@ -1000,6 +1002,8 @@ code {
 .footer-logo {
   width: 28px;
   height: 28px;
+  border-radius: 6px;
+  object-fit: cover;
 }
 .footer-links {
   display: flex;
