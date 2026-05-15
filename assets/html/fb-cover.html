@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+html, body {
+  margin: 0; padding: 0;
+  width: 820px; height: 312px;
+  overflow: hidden; background: #0a0a0f;
+}
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="312" viewBox="0 0 820 312">
+  <defs>
+    <radialGradient id="pg" cx="55%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#6d28d9" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="lf" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#0a0a0f" stop-opacity="0.95"/>
+      <stop offset="42%"  stop-color="#0a0a0f" stop-opacity="0.80"/>
+      <stop offset="68%"  stop-color="#0a0a0f" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="rf" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="80%"  stop-color="#0a0a0f" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0.85"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="312" fill="#0a0a0f"/>
+
+  <!-- Oscilloscope grid -->
+  <g stroke="#1e1e2e" stroke-width="1">
+    <line x1="0"   y1="78"  x2="820" y2="78"/>
+    <line x1="0"   y1="156" x2="820" y2="156"/>
+    <line x1="0"   y1="234" x2="820" y2="234"/>
+    <line x1="164" y1="0"   x2="164" y2="312"/>
+    <line x1="328" y1="0"   x2="328" y2="312"/>
+    <line x1="492" y1="0"   x2="492" y2="312"/>
+    <line x1="656" y1="0"   x2="656" y2="312"/>
+  </g>
+
+  <!-- Purple radial glow -->
+  <rect width="820" height="312" fill="url(#pg)"/>
+
+  <!-- CH1: Sawtooth (purple) — centered at y=78, amplitude ±28px -->
+  <polyline fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"
+    points="0,106 82,50 82,106 164,50 164,106 246,50 246,106 328,50 328,106 410,50 410,106 492,50 492,106 574,50 574,106 656,50 656,106 738,50 738,106 820,50"/>
+
+  <!-- CH2: Sine (green) — centered at y=156, amplitude ±30px (control at y=96) -->
+  <path fill="none" stroke="#4ade80" stroke-width="2" opacity="0.55"
+    d="M0,156 Q10.25,96 20.5,156
+       T41,156 T61.5,156 T82,156 T102.5,156 T123,156 T143.5,156 T164,156
+       T184.5,156 T205,156 T225.5,156 T246,156 T266.5,156 T287,156 T307.5,156
+       T328,156 T348.5,156 T369,156 T389.5,156 T410,156 T430.5,156 T451,156
+       T471.5,156 T492,156 T512.5,156 T533,156 T553.5,156 T574,156 T594.5,156
+       T615,156 T635.5,156 T656,156 T676.5,156 T697,156 T717.5,156 T738,156
+       T758.5,156 T779,156 T799.5,156 T820,156"/>
+
+  <!-- CH3: Square (amber) — centered at y=234, amplitude ±21px, period 82px -->
+  <polyline fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="square" opacity="0.5"
+    points="0,255 41,255 41,213 82,213 82,255 123,255 123,213 164,213 164,255
+            205,255 205,213 246,213 246,255 287,255 287,213 328,213 328,255
+            369,255 369,213 410,213 410,255 451,255 451,213 492,213 492,255
+            533,255 533,213 574,213 574,255 615,255 615,213 656,213 656,255
+            697,255 697,213 738,213 738,255 779,255 779,213 820,213"/>
+
+  <!-- CH4: Harmonic (red) — a compressed complex wave -->
+  <path fill="none" stroke="#f87171" stroke-width="1.5" opacity="0.35"
+    d="M0,156
+       Q4,130 8,156 T16,156 Q20,182 24,156 T32,156
+       Q36,120 40,156 T48,156 Q52,192 56,156 T64,156
+       Q68,130 72,156 T80,156 Q84,182 88,156 T96,156
+       Q100,120 104,156 T112,156 Q116,192 120,156 T128,156
+       Q132,130 136,156 T144,156 Q148,182 152,156 T160,156
+       Q164,120 168,156 T176,156 Q180,192 184,156 T192,156
+       Q196,130 200,156 T208,156 Q212,182 216,156 T224,156
+       Q228,120 232,156 T240,156 Q244,192 248,156 T256,156
+       Q260,130 264,156 T272,156 Q276,182 280,156 T288,156
+       Q292,120 296,156 T304,156 Q308,192 312,156 T320,156
+       Q324,130 328,156 T336,156 Q340,182 344,156 T352,156
+       Q356,120 360,156 T368,156 Q372,192 376,156 T384,156
+       Q388,130 392,156 T400,156 Q404,182 408,156 T416,156
+       Q420,120 424,156 T432,156 Q436,192 440,156 T448,156
+       Q452,130 456,156 T464,156 Q468,182 472,156 T480,156
+       Q484,120 488,156 T496,156 Q500,192 504,156 T512,156
+       Q516,130 520,156 T528,156 Q532,182 536,156 T544,156
+       Q548,120 552,156 T560,156 Q564,192 568,156 T576,156
+       Q580,130 584,156 T592,156 Q596,182 600,156 T608,156
+       Q612,120 616,156 T624,156 Q628,192 632,156 T640,156
+       Q644,130 648,156 T656,156 Q660,182 664,156 T672,156
+       Q676,120 680,156 T688,156 Q692,192 696,156 T704,156
+       Q708,130 712,156 T720,156 Q724,182 728,156 T736,156
+       Q740,120 744,156 T752,156 Q756,192 760,156 T768,156
+       Q772,130 776,156 T784,156 Q788,182 792,156 T800,156
+       Q804,120 808,156 T820,156"/>
+
+  <!-- Left-side dark overlay (text readability) -->
+  <rect width="820" height="312" fill="url(#lf)"/>
+
+  <!-- Right-edge dark fade -->
+  <rect width="820" height="312" fill="url(#rf)"/>
+
+  <!-- CVOsc Logo icon (52×52) at (60, 118) -->
+  <g transform="translate(60,118)">
+    <rect width="52" height="52" rx="13" fill="#6d28d9"/>
+    <svg viewBox="0 0 32 32" width="52" height="52">
+      <path d="M3 16 Q7 16 9 9 T15 23 T21 9 T27 16 L29 16"
+            fill="none" stroke="#fff" stroke-width="2.4"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </g>
+
+  <!-- "CVOsc" title -->
+  <text x="128" y="156"
+        font-family="'Ubuntu Sans', Ubuntu, 'DejaVu Sans', sans-serif"
+        font-size="44" font-weight="700" fill="#e4e4e7" letter-spacing="-1.5">CVOsc</text>
+
+  <!-- Tagline -->
+  <text x="60" y="192"
+        font-family="'Ubuntu Sans', Ubuntu, 'DejaVu Sans', sans-serif"
+        font-size="14" font-weight="400" fill="#a1a1aa">Multichannel Oscilloscope for CV &amp; Audio</text>
+
+  <!-- Platform monospace label -->
+  <text x="62" y="214"
+        font-family="'Ubuntu Mono', 'DejaVu Sans Mono', monospace"
+        font-size="11" fill="#8b5cf6" letter-spacing="2">// iPadOS · iOS · Android</text>
+</svg>
+</body>
+</html>

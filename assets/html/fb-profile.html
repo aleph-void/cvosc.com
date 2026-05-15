@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+html, body {
+  margin: 0; padding: 0;
+  width: 400px; height: 400px;
+  overflow: hidden; background: #0a0a0f;
+}
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <radialGradient id="pg" cx="50%" cy="50%" r="55%">
+      <stop offset="0%"   stop-color="#6d28d9" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="#0a0a0f"/>
+
+  <!-- Radial purple glow -->
+  <rect width="400" height="400" fill="url(#pg)"/>
+
+  <!-- CVOsc Logo icon (260×260) centered at (70, 70) -->
+  <g transform="translate(70,70)">
+    <rect width="260" height="260" rx="65" fill="#6d28d9"/>
+    <!-- Inner highlight ring (top edge subtle) -->
+    <rect width="260" height="260" rx="65" fill="none"
+          stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+    <!-- Waveform path from original 32×32 viewBox scaled to 260×260 -->
+    <svg viewBox="0 0 32 32" width="260" height="260">
+      <path d="M3 16 Q7 16 9 9 T15 23 T21 9 T27 16 L29 16"
+            fill="none" stroke="#fff" stroke-width="2.4"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </g>
+
+  <!-- "CVOsc" text below the icon -->
+  <text x="200" y="358"
+        font-family="'Ubuntu Sans', Ubuntu, 'DejaVu Sans', sans-serif"
+        font-size="24" font-weight="700" fill="#e4e4e7"
+        text-anchor="middle" letter-spacing="-0.5">CVOsc</text>
+
+  <!-- Tiny monospace subtitle -->
+  <text x="200" y="378"
+        font-family="'Ubuntu Mono', 'DejaVu Sans Mono', monospace"
+        font-size="9" fill="#6d28d9"
+        text-anchor="middle" letter-spacing="1.5">CV &amp; AUDIO SCOPE</text>
+</svg>
+</body>
+</html>
