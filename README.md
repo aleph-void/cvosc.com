@@ -1,5 +1,7 @@
 # CVOsc
 
+[![Sponsor Aleph Void](https://img.shields.io/badge/Sponsor-Aleph%20Void-EA4AAA?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/aleph-void)
+
 **A multichannel oscilloscope for Eurorack CV and audio on iPadOS, iOS, and Android.**
 
 CVOsc turns your iPad, iPhone, or Android device into a real-time oscilloscope for up to 16 channels of Eurorack Control Voltage or audio-rate signal. Capture from any DC offset enabled soundcard, overlay channels, record per-channel CAF/WAV files with JSON sidecars, and play back through DC-coupled outputs — all with per-channel scaling and live tuning detection (autocorrelation for audio, 1 V/oct mapping for CV).
